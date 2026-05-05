@@ -1,0 +1,20 @@
+# Test İcra Hesabatı: Müraciət Modulu
+
+Bu sənəd müraciət sisteminin (Application Module) funksional test mərhələlərini, gözlənilən nəticələri və verilənlər bazası (DB) yoxlamalarını sənədləşdirir[cite: 2].
+
+## 📊 Test Nəticələri Cədvəli
+
+| № | Prosesin Təsviri | Gözlənilən Nəticə | Faktiki Nəticə | Database-in Yoxlanılması |
+|:--|:---|:---|:---|:---|
+| 1 | **New Application** düyməsinin sıxılması. | Yeni müraciət forması (ad, soyad, sənəd yüklənmə sahələri) ekranda görünməlidir. | Form bütün elementləri ilə birlikdə açıldı[cite: 1, 2]. | Bu mərhələdə bazada heç bir yeni sətir yaradılmamalıdır[cite: 1, 2]. |
+| 2 | Məlumatların daxil edilməsi və **Approve for Payments** düyməsinin sıxılması. | Sistem müraciəti qəbul etməli, dashboarda yeni kart yaratmalı və status 'pending' görünməlidir[cite: 1, 2]. | Dashboard-da "My passport" müraciəti yarandı. Status 'pending' olaraq göründü[cite: 1, 2]. | SQL sorğusu ilə bazada yeni sətir tapıldı[cite: 1, 2]. |
+| 3 | **History** səhifəsinin açılması. | Dashboard-da yaradılan müraciətlər siyahıda görünməlidir[cite: 1, 2]. | Form bütün elementləri ilə açıldı[cite: 1, 2]. | Məlumatlar bazadakı ilə eynidir[cite: 1, 2]. |
+| 4 | **PDF** düyməsinin sıxılması. | Müraciət məlumatlarını əks etdirən PDF sənədi uğurla yüklənməlidir[cite: 1, 2]. | PDF uğurla yükləndi[cite: 1, 2]. | Bu mərhələdə bazada heç bir yeni sətir yaradılmamalıdır[cite: 1, 2]. |
+| 5 | **Delete** düyməsinin sıxılması. | Müraciət "Application History" bölməsindən silinməlidir[cite: 1, 2]. | Form history bölməsindən silindi[cite: 1, 2]. | SQL sorğusu nəticəsində sətir bazadan silindi[cite: 1, 2]. |
+
+## 🔍 SQL Yoxlama Sorğuları
+Test zamanı məlumatların bütövlüyünü (Data Integrity) təsdiqləmək üçün aşağıdakı SQL sorğusundan istifadə edilmişdir[cite: 1, 2]:
+
+```sql
+-- İstifadəçi emaili üzrə müraciətin yoxlanılması
+SELECT * FROM applications WHERE email ='cebrayilov7703@gmail.com';
