@@ -1,0 +1,9 @@
+# Test Case İcra Hesabatı
+
+| № | Prosesin təsviri | Gözlənilən nəticə | Faktiki nəticə | Database-in yoxlanılması |
+|:--|:---|:---|:---|:---|
+| 1 | **New Application** düyməsinin sıxılması. | Yeni müraciət forması (ad, soyad, sənəd yüklənmə sahələri) ekranda görünməlidir. | Form bütün elementləri ilə birlikdə açıldı. | Bu mərhələdə bazada heç bir yeni sətir yaradılmamalıdır. |
+| 2 | Açılmış formda məlumatların daxil edilməsi və **Approve for payments** düyməsinə sıxılması. | Sistem müraciəti qəbul etməli, dashboarda yeni kart yaratmalı və status pending göstərilməlidir. | Dashboard-da "My passport" müraciəti yarandı. Status pending olaraq göründü. | `select * from applications where email ='cebrayilov7703@gmail.com';` sorğusu ilə bazada yeni sətir tapıldı. |
+| 3 | **History** səhifəsinin açılması. | Dashboard-da yaradılan müraciətlər siyahıda görünməlidir. | Form bütün elementləri ilə açıldı. | `select * from applications where email ='cebrayilov7703@gmail.com';` məlumatlar bazadakı ilə eynidir. |
+| 4 | **PDF** düyməsinin sıxılması. | Müraciət məlumatlarını əks etdirən pdf sənədi uğurla yüklənməlidir. | PDF uğurla yükləndi. | Bu mərhələdə bazada heç bir yeni sətir yaradılmamalıdır. |
+| 5 | **Delete** düyməsinin sıxılması. | Müraciət application history bölməsindən silinməlidir. | Form history bölməsindən silindi. | `select * from applications where email ='cebrayilov7703@gmail.com';` sorğusunda 1 sətir bazadan silindi. |
